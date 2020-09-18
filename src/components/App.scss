@@ -1,0 +1,33 @@
+@import "~antd/dist/antd.css";
+
+.app_container{
+    background-color: cornsilk;
+    padding: 20px;
+}
+.app_form{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+.app_header{
+    height: 90px;
+    padding-top: 20px;
+}
+.app_submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    &_btn{
+        padding: 10px 20px;
+        background-color: darkgrey;
+        border-radius: 2px;
+        border-color: darkgray;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+        &:active{
+            box-shadow: none;
+        }
+    }
+
+}

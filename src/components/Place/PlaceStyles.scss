@@ -1,0 +1,16 @@
+.place_container{
+    flex-basis: 100%;
+    border: 1px dotted;
+    border-radius: 2px;
+    padding: 10px;
+    //background-color: cornsilk;
+}
+.place_tree{
+    cursor: pointer;
+}
+.ant-tree{
+    background-color: cornsilk;
+    &-treenode{
+        margin-bottom: 5px;
+    }
+}
