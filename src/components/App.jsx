@@ -2,6 +2,7 @@ import React from 'react';
 
 import PlaceContainer from './Place/PlaceContainer';
 import LanguageContainer from './Language/LanguageContainer';
+import OutputWindowContainer from './OutputWindow/OutputWindowContainer';
 
 import {saveData} from '../store/myActions';
 
@@ -13,7 +14,8 @@ class App extends React.Component{
         super(props);
         this.state = {
             place: {},
-            language: {}
+            language: {},
+            isOpenOutputWindow: false
         };
         this.onPlaceChanged = this.onPlaceChanged.bind(this);
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
@@ -40,8 +42,15 @@ class App extends React.Component{
 
         const storeData = this.props.store.getState();
         console.log('App store=', storeData.myReducer.localData);
+        this.setState({isOpenOutputWindow: true});
     };
 
+    // Закрыть окно вывода данных
+    closeOutputWindow = () => {
+        this.setState({isOpenOutputWindow: false});
+    };
+
+    //
     render() {
         return <div className='app_container'>
                     <div className = 'app_header'>
@@ -55,6 +64,7 @@ class App extends React.Component{
                         <input type='submit' className='app_submit_btn' value='Сохранить' />
                         </div>
                     </form>
+                    {this.state.isOpenOutputWindow && <OutputWindowContainer close={this.closeOutputWindow} />}
                 </div>
     }
 }

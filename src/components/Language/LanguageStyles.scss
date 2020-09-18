@@ -22,3 +22,9 @@
     margin-top: 5px;
     width: 300px;
 }
+
+@media screen and (max-width: 576px){
+    .languages_autoComplete{
+        width: 100%;
+    }
+}
