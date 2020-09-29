@@ -90,6 +90,9 @@ module.exports = {
             filename: '[name].css'
         }),
     ],
+    devServer: {
+        port: 4200
+    },
     module: {
         rules: [
             {
@@ -108,7 +111,14 @@ module.exports = {
                     options: babelOptions('@babel/preset-react')
                 }
             },
-            
+            {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(ttf|woff|woff2|eot)$/,
+                use: ['file-loader']
+            },
         ]
     },
 }

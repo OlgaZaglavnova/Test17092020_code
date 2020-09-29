@@ -7,6 +7,10 @@ import {Provider} from 'react-redux';
 import {initStore} from './store/store';
 import {loadData} from './store/myActions';
 
+const myDataJSON = require('./store/data.json');
+
+console.log('index JSON=', myDataJSON);
+
 const store = initStore();
 store.dispatch(loadData());
 
