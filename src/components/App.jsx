@@ -3,6 +3,7 @@ import React from 'react';
 import PlaceContainer from './Place/PlaceContainer';
 import LanguageContainer from './Language/LanguageContainer';
 import OutputWindowContainer from './OutputWindow/OutputWindowContainer';
+import TestSelectContainer from './TestSelectForm/TestSelectContainer';
 
 import {saveData} from '../store/myActions';
 
@@ -64,6 +65,7 @@ class App extends React.Component{
                         <input type='submit' className='app_submit_btn' value='Сохранить' />
                         </div>
                     </form>
+                    <TestSelectContainer />
                     {this.state.isOpenOutputWindow && <OutputWindowContainer close={this.closeOutputWindow} />}
                 </div>
     }
