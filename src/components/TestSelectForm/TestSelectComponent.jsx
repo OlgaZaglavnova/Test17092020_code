@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 
 import {Form, Select, Radio, Rate} from 'antd';
 
+import './TestSelect.scss';
+
 const {Option} = Select;
 
 const countries = {'1': [
@@ -17,25 +19,37 @@ const countries = {'1': [
 ]
 };
 
-export const TestSelectComponent = () => {
-        //const selector = 'second';
-        const [selector, setSelector] = useState('1');
-        const [defValue,setDefValue] = useState(countries[selector][0].name);
+export const TestSelectComponent = ({defaultValue, saveDefault}) => {
 
+        const [selector, setSelector] = useState('1');
+                       
         const onChange = (e) => {
-            console.log(e.target.value);
             setSelector(e.target.value);
-            setDefValue(countries[selector][0].name);
+        };
+
+        const onChangeSelectAntd = (e) => {
+            console.log('onChangeSelectAntd', selector, e);
+            saveDefault({selector, newData: e});
         };
 
         const onChangeSelect = (e) => {
-            console.log(e);
-            setDefValue(e);
+            console.log('onChangeSelect', selector, e.currentTarget.value);
+            saveDefault({selector, newData: e.currentTarget.value});
         };
+
+        const isSelected = (item) => {
+            if (defaultValue[selector]){
+                return item.name === defaultValue[selector] ? true : false;
+            } else {
+                return item.id === countries[selector][0].id ? true : false;
+            }
+        };
+
+        console.log('TestSelectComponent', defaultValue, selector);
 
         return (
             <Form initialValues={{
-                'select': countries[selector][0].name,
+                'select': defaultValue[selector] ? defaultValue[selector] : countries[selector][0].name,
                 'radio-group': '1',
                 rate: 4
             }} >
@@ -46,11 +60,16 @@ export const TestSelectComponent = () => {
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item name='select'>
-                        <Select defaultActiveFirstOption={true}>
+                        <Select onChange={onChangeSelectAntd} value={defaultValue[selector] ? defaultValue[selector] : countries[selector][0].name}>
                             {countries[selector].map((country) => {
                                 return (<Select.Option key={country.id} value={country.name}>{country.name}</Select.Option>)
                             })}
                         </Select>
+                        <select className='select' onChange={onChangeSelect}>
+                        {countries[selector].map((country) => {
+                                return (<option key={country.id} value={country.name} selected={isSelected(country)}>{country.name}</option>)
+                            })}
+                        </select>
                 </Form.Item>
                 <Form.Item name='rate' label='Rate'>
                     <Rate />
