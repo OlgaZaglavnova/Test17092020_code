@@ -49,7 +49,7 @@ export const TestSelectComponent = ({defaultValue, saveDefault}) => {
 
         return (
             <Form initialValues={{
-                'select': defaultValue[selector] ? defaultValue[selector] : countries[selector][0].name,
+                'select': defaultValue[selector] ? defaultValue[selector] : [countries[selector][0].name],
                 'radio-group': '1',
                 rate: 4
             }} >
@@ -60,7 +60,7 @@ export const TestSelectComponent = ({defaultValue, saveDefault}) => {
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item name='select'>
-                        <Select onChange={onChangeSelectAntd} value={defaultValue[selector] ? defaultValue[selector] : countries[selector][0].name}>
+                        <Select onChange={onChangeSelectAntd} value={defaultValue[selector] ? defaultValue[selector] : [countries[selector][0].name]} mode='multiple'>
                             {countries[selector].map((country) => {
                                 return (<Select.Option key={country.id} value={country.name}>{country.name}</Select.Option>)
                             })}
